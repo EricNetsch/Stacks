@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import FastImageCache
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,7 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        //        print("app: \(app)")
+        //        print("url: \(url)")
+        //        print("options: \(options)")
+        
+        if let sourceApplication = options["UIApplicationOpenURLOptionsSourceApplicationKey"] {
+            
+            if (String(sourceApplication) == "com.apple.SafariViewService") {
+                NSNotificationCenter.defaultCenter().postNotificationName(kSafariViewControllerCloseNotification, object: url)
+                return true
+            }
+        }
+        
+        return true
+    }
+    
 }
-

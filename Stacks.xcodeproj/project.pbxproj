@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E31672541E3FB4CACC9F728 /* Pods_Stacks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEDF29E521366F97E57755F /* Pods_Stacks.framework */; };
 		F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */; };
-		F7C798B21CD3C90600D4E040 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798B11CD3C90600D4E040 /* ViewController.swift */; };
+		F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798B11CD3C90600D4E040 /* MediaView.swift */; };
 		F7C798B51CD3C90600D4E040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C798B31CD3C90600D4E040 /* Main.storyboard */; };
 		F7C798B71CD3C90600D4E040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7C798B61CD3C90600D4E040 /* Assets.xcassets */; };
 		F7C798BA1CD3C90600D4E040 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */; };
 		F7C798C51CD3C90600D4E040 /* StacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798C41CD3C90600D4E040 /* StacksTests.swift */; };
 		F7C798D01CD3C90600D4E040 /* StacksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798CF1CD3C90600D4E040 /* StacksUITests.swift */; };
+		F7C798E01CD3CACE00D4E040 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C798DF1CD3CACE00D4E040 /* iCarousel.m */; };
+		F7C798EA1CD4104700D4E040 /* Instagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798E91CD4104700D4E040 /* Instagram.swift */; };
+		F7C798F41CD42C0300D4E040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798F31CD42C0300D4E040 /* User.swift */; };
+		F7F7B94D1CD6DE560094B27D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F7B94C1CD6DE560094B27D /* LoginVC.swift */; };
+		F7F7B9511CD723F70094B27D /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F7B9501CD723F70094B27D /* PhotoInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		493ACCF5CBF5896D5B457A57 /* Pods-Stacks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stacks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stacks/Pods-Stacks.debug.xcconfig"; sourceTree = "<group>"; };
+		4BEDF29E521366F97E57755F /* Pods_Stacks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stacks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D78C9F9A1EA6A50D9BC181D6 /* Pods-Stacks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stacks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stacks/Pods-Stacks.release.xcconfig"; sourceTree = "<group>"; };
 		F7C798AC1CD3C90600D4E040 /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F7C798B11CD3C90600D4E040 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7C798B11CD3C90600D4E040 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		F7C798B41CD3C90600D4E040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7C798B61CD3C90600D4E040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7C798B91CD3C90600D4E040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +56,13 @@
 		F7C798CB1CD3C90600D4E040 /* StacksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StacksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C798CF1CD3C90600D4E040 /* StacksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksUITests.swift; sourceTree = "<group>"; };
 		F7C798D11CD3C90600D4E040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7C798DE1CD3CACE00D4E040 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		F7C798DF1CD3CACE00D4E040 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-iCarousel-header.h"; sourceTree = "<group>"; };
+		F7C798E91CD4104700D4E040 /* Instagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instagram.swift; sourceTree = "<group>"; };
+		F7C798F31CD42C0300D4E040 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F7F7B94C1CD6DE560094B27D /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		F7F7B9501CD723F70094B27D /* PhotoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E31672541E3FB4CACC9F728 /* Pods_Stacks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +91,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BB928A73A8E47F22C000FCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BEDF29E521366F97E57755F /* Pods_Stacks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84C6EE36081794114441DA4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				493ACCF5CBF5896D5B457A57 /* Pods-Stacks.debug.xcconfig */,
+				D78C9F9A1EA6A50D9BC181D6 /* Pods-Stacks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F7C798A31CD3C90600D4E040 = {
 			isa = PBXGroup;
 			children = (
+				F7C798DD1CD3CACE00D4E040 /* iCarousel */,
 				F7C798AE1CD3C90600D4E040 /* Stacks */,
 				F7C798C31CD3C90600D4E040 /* StacksTests */,
 				F7C798CE1CD3C90600D4E040 /* StacksUITests */,
 				F7C798AD1CD3C90600D4E040 /* Products */,
+				84C6EE36081794114441DA4C /* Pods */,
+				4BB928A73A8E47F22C000FCF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +135,16 @@
 			isa = PBXGroup;
 			children = (
 				F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */,
-				F7C798B11CD3C90600D4E040 /* ViewController.swift */,
+				F7C798B11CD3C90600D4E040 /* MediaView.swift */,
 				F7C798B31CD3C90600D4E040 /* Main.storyboard */,
 				F7C798B61CD3C90600D4E040 /* Assets.xcassets */,
 				F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */,
 				F7C798BB1CD3C90600D4E040 /* Info.plist */,
+				F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */,
+				F7C798E91CD4104700D4E040 /* Instagram.swift */,
+				F7C798F31CD42C0300D4E040 /* User.swift */,
+				F7F7B94C1CD6DE560094B27D /* LoginVC.swift */,
+				F7F7B9501CD723F70094B27D /* PhotoInfo.swift */,
 			);
 			path = Stacks;
 			sourceTree = "<group>";
@@ -125,6 +167,15 @@
 			path = StacksUITests;
 			sourceTree = "<group>";
 		};
+		F7C798DD1CD3CACE00D4E040 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				F7C798DE1CD3CACE00D4E040 /* iCarousel.h */,
+				F7C798DF1CD3CACE00D4E040 /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7C798D41CD3C90600D4E040 /* Build configuration list for PBXNativeTarget "Stacks" */;
 			buildPhases = (
+				7EAD9ACC1BB6715B3B142845 /* Check Pods Manifest.lock */,
 				F7C798A81CD3C90600D4E040 /* Sources */,
 				F7C798A91CD3C90600D4E040 /* Frameworks */,
 				F7C798AA1CD3C90600D4E040 /* Resources */,
+				7C9C51140342275EDF2F02F6 /* Embed Pods Frameworks */,
+				4666D8AC8884EC4387AD9407 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,12 +305,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4666D8AC8884EC4387AD9407 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stacks/Pods-Stacks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C9C51140342275EDF2F02F6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stacks/Pods-Stacks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EAD9ACC1BB6715B3B142845 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F7C798A81CD3C90600D4E040 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7C798B21CD3C90600D4E040 /* ViewController.swift in Sources */,
+				F7F7B9511CD723F70094B27D /* PhotoInfo.swift in Sources */,
+				F7C798EA1CD4104700D4E040 /* Instagram.swift in Sources */,
+				F7C798E01CD3CACE00D4E040 /* iCarousel.m in Sources */,
+				F7F7B94D1CD6DE560094B27D /* LoginVC.swift in Sources */,
+				F7C798F41CD42C0300D4E040 /* User.swift in Sources */,
+				F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */,
 				F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,23 +506,29 @@
 		};
 		F7C798D51CD3C90600D4E040 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493ACCF5CBF5896D5B457A57 /* Pods-Stacks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Stacks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilefirststudio.Stacks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Stacks/Swift-iCarousel-header.h";
 			};
 			name = Debug;
 		};
 		F7C798D61CD3C90600D4E040 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D78C9F9A1EA6A50D9BC181D6 /* Pods-Stacks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Stacks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilefirststudio.Stacks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Stacks/Swift-iCarousel-header.h";
 			};
 			name = Release;
 		};
@@ -484,6 +597,7 @@
 				F7C798D61CD3C90600D4E040 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7C798D71CD3C90600D4E040 /* Build configuration list for PBXNativeTarget "StacksTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +606,7 @@
 				F7C798D91CD3C90600D4E040 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7C798DA1CD3C90600D4E040 /* Build configuration list for PBXNativeTarget "StacksUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +615,7 @@
 				F7C798DC1CD3C90600D4E040 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
