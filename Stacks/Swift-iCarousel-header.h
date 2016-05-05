@@ -7,6 +7,6 @@
 //
 
 #import "iCarousel.h"
-#import "FastImageCache/FICImageTable.h"
-#import "FastImageCache/FICUtilities.h"
-#import "FastImageCache/FICImports.h"
+//#import "FastImageCache/FICImageTable.h"
+//#import "FastImageCache/FICUtilities.h"
+//#import "FastImageCache/FICImports.h"

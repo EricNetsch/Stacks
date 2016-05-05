@@ -6,11 +6,11 @@ target ‘Stacks’ do
 
 pod ‘OAuthSwift’, ‘~> 0.5.0’
 
-pod ‘SwiftyJSON’, :git => ‘https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod ‘SwiftyJSON’
 
-pod ‘Alamofire’, ‘~> 3.3’
+pod ‘Alamofire’
 
-pod ‘FastImageCache’, ‘~>1.2’
+pod ‘HanekeSwift’
 
 end
 

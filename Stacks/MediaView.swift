@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import QuartzCore
 import Alamofire
 import SwiftyJSON
 import SafariServices
+import Haneke
+
 
 
 class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGestureRecognizerDelegate {
@@ -22,13 +23,12 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var safariVC: SFSafariViewController?
     var user: User?
     
-//    var photos: [UIImage!] = []
-    var photos = [PhotoInfo]()
-    var indexPaths = String()
     var accessToken: String?
     var nextURLRequest: NSURLRequest?
-    let BASE = "https://api.instagram.com"
-    let LIKE_PATH = "/v1/users/self/media/recent/?access_token="
+    let BASE: String = "https://api.instagram.com/v1/users/self/media/recent/?access_token="
+//    let LIKE_PATH = "/v1/users/self/media/recent/?access_token="
+    
+    var photoModels: [PhotoModel] = []
 
     
     @IBOutlet var carousel : iCarousel!
@@ -58,12 +58,40 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         tap.delegate = self
         gesture.delegate = self
         
-        getPhotos()
         
-//        print("PHOTOS = \(photos)")
-//        print("IndexPaths = \(indexPaths)")
+//        let client_id = "24e7ef78bde7477a8ca0c42857e6466f"
+        let link = NSURL(string:"\(BASE)\(accessToken!)")
+        print(link)
+        let request = NSURLRequest(URL: link!)
+        let session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate:nil,
+            delegateQueue:NSOperationQueue.mainQueue()
+        )
+        
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
+            if let data = dataOrNil {
+                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                    data, options:[]) as? NSDictionary {
+                    let photosArr: NSArray = (responseDictionary["data"] as? NSArray)!
+                                                                                
+                        for photo in photosArr {
+                            self.photoModels.append(PhotoModel(json: (photo as? NSDictionary)!))
+                                                                                    
+//                            print("PHOTOMODELS:\(photoModels)")
+                        }
+                                                                                
+//                         self.tableView.reloadData()
+                                                                                
+            }
+          }
+        });
+        
+        task.resume()
+        
         
     }
+    
     
     override func viewDidAppear(animated: Bool) {
       
@@ -73,6 +101,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         super.didReceiveMemoryWarning()
     }
     
+    func didFailToFetchMediaItems(error: NSError) {
+        
+    }
     
 
     func gestureRecognizer(_: UIGestureRecognizer,shouldRecognizeSimultaneouslyWithGestureRecognizer:UIGestureRecognizer) -> Bool {
@@ -94,7 +125,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
-        return items.count
+        return self.photoModels.count
     }
     
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView
@@ -124,6 +155,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             //get a reference to the label in the recycled view
             itemView = view as! UIImageView;
             label = itemView.viewWithTag(1) as! UILabel!
+            
+//            let photo = photoModels[indexPath.row]
+//            let photoUrl = NSURL(string: photo.url!)
+//            carousel.itemView.setImageWithURL(photoUrl!)
             
         }
         
@@ -182,56 +217,14 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     }
     
     func getPhotos()  {
-//        let accessToken = String (user!.instagramAccessToken)
-        let urlGram = "\(BASE)\(LIKE_PATH)\(self.accessToken!)"
-        print(urlGram)
         
-        Alamofire.request(.GET, urlGram).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    let json = JSON(value)
-                    
-                    if (json["meta"]["code"].intValue  == 200) {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                            if let urlString = json["pagination"]["next_url"].URL {
-                                self.nextURLRequest = NSURLRequest(URL: urlString)
-                            } else {
-                                self.nextURLRequest = nil
-                            }
-                            let photoInfos = json["data"].arrayValue
-                                
-                                .filter {
-                                    $0["type"].stringValue == "image"
-                                }.map({
-                                    PhotoInfo(sourceImageURL: $0["images"]["standard_resolution"]["url"].URL!)
-                                    
-                                })
-                    
-                            
-                            let lastItem = self.photos.count
-                            
-                             self.photos.appendContentsOf(photoInfos)
-                            
-                            let indexPaths = (lastItem..<self.photos.count).map { NSIndexPath(forItem: $0, inSection: 0) }
-                            //                            print(self.photos)
-                            dispatch_async(dispatch_get_main_queue()) {
-                                
-                                                    print("PATHS: \(indexPaths.row)")
-//                                let eachPhoto:PhotoInfo = indexPaths
-                  
-                            }
-                        }
-                    } else {
-                        print(ErrorType)
-                    }
-                }
-            case .Failure:
-                break;
-            }
-        }
+//        Alamofire.request(.GET, photoModels).response { (request, response, data, error) in
+//            self.myImageView.image = UIImage(data: data, scale:1)
+        
     }
-
+  
     
+
+
 }
 

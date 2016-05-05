@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import FastImageCache
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
