@@ -12,6 +12,8 @@ pod ‘Alamofire’
 
 pod ‘HanekeSwift’
 
+pod ‘AlamofireImage’
+
 end
 
 

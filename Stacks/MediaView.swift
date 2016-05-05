@@ -16,19 +16,18 @@ import Haneke
 
 class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGestureRecognizerDelegate {
     
-    var items: [Int] = []
+//    var items: [mutablearray] = []
     var tap = UITapGestureRecognizer()
     var gesture = UIPanGestureRecognizer()
    
     var safariVC: SFSafariViewController?
     var user: User?
+    var photoModels: [PhotoModel] = []
     
     var accessToken: String?
     var nextURLRequest: NSURLRequest?
     let BASE: String = "https://api.instagram.com/v1/users/self/media/recent/?access_token="
 //    let LIKE_PATH = "/v1/users/self/media/recent/?access_token="
-    
-    var photoModels: [PhotoModel] = []
 
     
     @IBOutlet var carousel : iCarousel!
@@ -43,10 +42,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        for i in 0...99 {
-            
-        items.append(i)
-        }
+//        for i in 0...99 {
+//            
+//        items.append(i)
+//        }
         
     }
 
@@ -57,7 +56,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         
         tap.delegate = self
         gesture.delegate = self
-        
         
 //        let client_id = "24e7ef78bde7477a8ca0c42857e6466f"
         let link = NSURL(string:"\(BASE)\(accessToken!)")
@@ -77,12 +75,11 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                                                                                 
                         for photo in photosArr {
                             self.photoModels.append(PhotoModel(json: (photo as? NSDictionary)!))
-                                                                                    
-//                            print("PHOTOMODELS:\(photoModels)")
+                            
                         }
                                                                                 
 //                         self.tableView.reloadData()
-                                                                                
+                    
             }
           }
         });
@@ -111,17 +108,17 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     }
     
     func carouselDidEndScrollingAnimation(carousel: iCarousel) {
-        
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
-       
-        carousel.currentItemView!.addGestureRecognizer(gesture)
-        carousel.currentItemView!.userInteractionEnabled = true
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
-        carousel.currentItemView!.addGestureRecognizer(tap)
-        carousel.currentItemView!.userInteractionEnabled = true
-        
-        gesture.requireGestureRecognizerToFail(tap)
+//        
+//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
+//       
+//        carousel.currentItemView!.addGestureRecognizer(gesture)
+//        carousel.currentItemView!.userInteractionEnabled = true
+//        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
+//        carousel.currentItemView!.addGestureRecognizer(tap)
+//        carousel.currentItemView!.userInteractionEnabled = true
+//        
+//        gesture.requireGestureRecognizerToFail(tap)
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
@@ -153,12 +150,14 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         else
         {
             //get a reference to the label in the recycled view
-            itemView = view as! UIImageView;
-            label = itemView.viewWithTag(1) as! UILabel!
+            itemView = UIImageView(frame:CGRect(x:0, y:0, width:200, height:200))
+            itemView.image = UIImage(named: photoModels[index].url!)
+            itemView.backgroundColor = UIColor.blackColor()
+            itemView.contentMode = .Center
             
-//            let photo = photoModels[indexPath.row]
-//            let photoUrl = NSURL(string: photo.url!)
-//            carousel.itemView.setImageWithURL(photoUrl!)
+        
+            
+//            label = itemView.viewWithTag(1) as! UILabel!
             
         }
         
@@ -216,15 +215,5 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         print("Tapped")
     }
     
-    func getPhotos()  {
-        
-//        Alamofire.request(.GET, photoModels).response { (request, response, data, error) in
-//            self.myImageView.image = UIImage(data: data, scale:1)
-        
-    }
-  
-    
-
-
-}
+   }
 
