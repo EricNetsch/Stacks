@@ -81,19 +81,7 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
                     })
                     
                 } else {
-                    //                    print("-- data \(data!)")
-                    
-                    // The object should be formatted that way:
-                    //                    "access_token" : "",
-                    //                    "user" : {
-                    //                        "website" : "",
-                    //                        "profile_picture" : "",
-                    //                        "username" : "",
-                    //                        "id" : "",
-                    //                        "full_name" : "",
-                    //                        "bio" : ""
-                    
-                    //                    print("-- Instagram json: \(json)")
+             
                     
                     let json = JSON(data!)
                     print("json: \(json)")
@@ -110,7 +98,7 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
                             
                             self.accessToken = user.instagramAccessToken
                             
-                            print(self.accessToken)
+                            print("MY TOKEN:\(self.accessToken)")
                             
                              self.performSegueWithIdentifier("SegueToPhotos", sender: self)
                             

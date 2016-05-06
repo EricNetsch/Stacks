@@ -144,7 +144,6 @@
 		F7C798AE1CD3C90600D4E040 /* Stacks */ = {
 			isa = PBXGroup;
 			children = (
-				F7AF515C1CDAC8B400853DF9 /* OAuth */,
 				F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */,
 				F7C798B11CD3C90600D4E040 /* MediaView.swift */,
 				F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */,
@@ -153,6 +152,7 @@
 				F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */,
 				F7C798BB1CD3C90600D4E040 /* Info.plist */,
 				F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */,
+				F7AF515C1CDAC8B400853DF9 /* OAuth */,
 			);
 			path = Stacks;
 			sourceTree = "<group>";

@@ -16,19 +16,17 @@ import Haneke
 
 class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGestureRecognizerDelegate {
     
-//    var items: [mutablearray] = []
+
     var tap = UITapGestureRecognizer()
     var gesture = UIPanGestureRecognizer()
-   
     var safariVC: SFSafariViewController?
     var user: User?
-    var photoModels: [PhotoModel] = []
-    
-    var accessToken: String?
+    var accessToken: String!
     var nextURLRequest: NSURLRequest?
     let BASE: String = "https://api.instagram.com/v1/users/self/media/recent/?access_token="
-//    let LIKE_PATH = "/v1/users/self/media/recent/?access_token="
 
+    var imageData = NSData()
+    var photos : NSMutableArray = NSMutableArray()
     
     @IBOutlet var carousel : iCarousel!
     @IBOutlet weak var currentIndex: UILabel!
@@ -36,18 +34,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var loginInstagramButton: UIBarButtonItem!
     
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var logText: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-//        for i in 0...99 {
-//            
-//        items.append(i)
-//        }
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,42 +43,41 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         tap.delegate = self
         gesture.delegate = self
         
-//        let client_id = "24e7ef78bde7477a8ca0c42857e6466f"
-        let link = NSURL(string:"\(BASE)\(accessToken!)")
-        print(link)
-        let request = NSURLRequest(URL: link!)
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
-        )
         
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-            if let data = dataOrNil {
+        let url = NSURL(string:"\(BASE)\(self.accessToken)")
+        print(link)
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let task = session.dataTaskWithRequest(NSURLRequest(URL: url!)) { (data, response, error) -> Void in
+            
+            if (error == nil){
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                    data, options:[]) as? NSDictionary {
+                    data!, options:[]) as? NSDictionary {
                     let photosArr: NSArray = (responseDictionary["data"] as? NSArray)!
-                                                                                
-                        for photo in photosArr {
-                            self.photoModels.append(PhotoModel(json: (photo as? NSDictionary)!))
-                            
-                        }
-                                                                                
-//                         self.tableView.reloadData()
                     
+                    for photo in photosArr {
+                        
+                        let dataArry = photo as? NSDictionary
+                        let images = dataArry!["images"]!["standard_resolution"]
+                        let imageArry = images!!["url"] as! String
+                        print("LINK:\(imageArry)")
+                        let theImageURL = NSURL(string: imageArry)
+                        self.photos.addObject(NSData(contentsOfURL: theImageURL!)!)
+                        print("COUNT:\(self.photos.count)")
+                         self.carousel.reloadData()
+                    }
+                }
+            } else{
+                
+                print("Error downloading data \(error)")
             }
-          }
-        });
+        }
         
         task.resume()
-        
-        
     }
-    
     
     override func viewDidAppear(animated: Bool) {
-      
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,19 +86,18 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     func didFailToFetchMediaItems(error: NSError) {
         
     }
-    
 
     func gestureRecognizer(_: UIGestureRecognizer,shouldRecognizeSimultaneouslyWithGestureRecognizer:UIGestureRecognizer) -> Bool {
         return true
     }
     
     func carouselDidEndScrollingAnimation(carousel: iCarousel) {
-//        
-//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
+        
+//        gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
 //       
 //        carousel.currentItemView!.addGestureRecognizer(gesture)
 //        carousel.currentItemView!.userInteractionEnabled = true
-//        
+        
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
 //        carousel.currentItemView!.addGestureRecognizer(tap)
 //        carousel.currentItemView!.userInteractionEnabled = true
@@ -122,58 +106,31 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
-        return self.photoModels.count
+        return self.photos.count
     }
     
-    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView
-    {
-        var label: UILabel
-        var itemView: UIImageView
+    
+    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
         
-        //create new view if no view is available for recycling
+        var itemView: UIImageView
         if (view == nil)
         {
-            //don't do anything specific to the index within
-            //this `if (view == nil) {...}` statement because the view will be
-            //recycled and used with other index values later
-            itemView = UIImageView(frame:CGRect(x:0, y:0, width:200, height:200))
-            itemView.image = UIImage(named: "page.png")
-            itemView.contentMode = .Center
+            itemView = UIImageView(frame:CGRect(x:0, y:0, width:300, height:300))
+            itemView.contentMode = .ScaleAspectFill
             
-            label = UILabel(frame:itemView.bounds)
-            label.backgroundColor = UIColor.clearColor()
-            label.textAlignment = .Center
-            label.font = label.font.fontWithSize(50)
-            label.tag = 1
-            itemView.addSubview(label)
         }
         else
         {
-            //get a reference to the label in the recycled view
-            itemView = UIImageView(frame:CGRect(x:0, y:0, width:200, height:200))
-            itemView.image = UIImage(named: photoModels[index].url!)
-            itemView.backgroundColor = UIColor.blackColor()
-            itemView.contentMode = .Center
-            
-        
-            
-//            label = itemView.viewWithTag(1) as! UILabel!
-            
+            itemView = view as! UIImageView
         }
+
+        itemView.image = UIImage(data: photos.objectAtIndex(index) as! NSData)
         
-        //set item label
-        //remember to always set any properties of your carousel item
-        //views outside of the `if (view == nil) {...}` check otherwise
-        //you'll get weird issues with carousel item content appearing
-        //in the wrong place in the carousel
-        
-        
-//        label.text = "\(items[index])"
-//        currentIndex.text = "\(items[index]-1)"
-//        totalIndex.text = "/\(items.count)"
-//        backgroundImg.image = itemView.image
+        currentIndex.text = "\(carousel.currentItemIndex) of"
+        totalIndex.text = "\(photos.count)"
         
         return itemView
+     
     }
     
     func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat
@@ -214,6 +171,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         carousel.currentItemView!.frame.origin = CGPointMake(0, 0)
         print("Tapped")
     }
+    
     
    }
 
