@@ -10,9 +10,7 @@ pod ‘SwiftyJSON’
 
 pod ‘Alamofire’
 
-pod ‘HanekeSwift’
-
-pod ‘AlamofireImage’
+pod ‘Parse’
 
 end
 

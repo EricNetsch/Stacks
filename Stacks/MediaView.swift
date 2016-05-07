@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SafariServices
-import Haneke
+
+
 
 
 
@@ -23,7 +24,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var user: User?
     var accessToken: String!
     var nextURLRequest: NSURLRequest?
-    let BASE: String = "https://api.instagram.com/v1/users/self/media/recent/?access_token="
+    let BASE: String = "https://api.instagram.com/v1/users/self/media/liked?access_token="
 
     var imageData = NSData()
     var photos : NSMutableArray = NSMutableArray()
@@ -40,8 +41,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
 
         carousel.type = .Linear
         
-        tap.delegate = self
-        gesture.delegate = self
+//        tap.delegate = self
+//        gesture.delegate = self
         
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
@@ -73,6 +74,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         }
         
         task.resume()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -93,16 +95,16 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func carouselDidEndScrollingAnimation(carousel: iCarousel) {
         
-//        gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
-//       
-//        carousel.currentItemView!.addGestureRecognizer(gesture)
-//        carousel.currentItemView!.userInteractionEnabled = true
+        self.gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
+       
+        carousel.currentItemView?.addGestureRecognizer(gesture)
+        carousel.currentItemView?.userInteractionEnabled = true
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
+        carousel.currentItemView?.addGestureRecognizer(tap)
+        carousel.currentItemView?.userInteractionEnabled = true
         
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
-//        carousel.currentItemView!.addGestureRecognizer(tap)
-//        carousel.currentItemView!.userInteractionEnabled = true
-//        
-//        gesture.requireGestureRecognizerToFail(tap)
+        self.gesture.requireGestureRecognizerToFail(tap)
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
@@ -125,6 +127,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         }
 
         itemView.image = UIImage(data: photos.objectAtIndex(index) as! NSData)
+//        itemView.contentMode = .ScaleAspectFill
+        itemView.contentMode = UIViewContentMode.ScaleAspectFill
+        
         
         currentIndex.text = "\(carousel.currentItemIndex) of"
         totalIndex.text = "\(photos.count)"
@@ -137,7 +142,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     {
         if (option == .Spacing)
         {
-            return value * 1.2
+            return value * 1.1
         }
         return value
     }

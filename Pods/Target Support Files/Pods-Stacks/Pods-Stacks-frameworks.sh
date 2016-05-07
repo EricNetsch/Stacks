@@ -85,15 +85,15 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Stacks/Alamofire.framework"
-  install_framework "Pods-Stacks/AlamofireImage.framework"
-  install_framework "Pods-Stacks/Haneke.framework"
+  install_framework "Pods-Stacks/Bolts.framework"
   install_framework "Pods-Stacks/OAuthSwift.framework"
+  install_framework "Pods-Stacks/Parse.framework"
   install_framework "Pods-Stacks/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Stacks/Alamofire.framework"
-  install_framework "Pods-Stacks/AlamofireImage.framework"
-  install_framework "Pods-Stacks/Haneke.framework"
+  install_framework "Pods-Stacks/Bolts.framework"
   install_framework "Pods-Stacks/OAuthSwift.framework"
+  install_framework "Pods-Stacks/Parse.framework"
   install_framework "Pods-Stacks/SwiftyJSON.framework"
 fi

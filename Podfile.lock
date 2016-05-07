@@ -1,23 +1,22 @@
 PODS:
   - Alamofire (3.3.1)
-  - AlamofireImage (2.4.0):
-    - Alamofire (~> 3.3)
-  - HanekeSwift (0.10.1)
+  - Bolts/Tasks (1.7.0)
   - OAuthSwift (0.5.2)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
-  - AlamofireImage
-  - HanekeSwift
   - OAuthSwift (~> 0.5.0)
+  - Parse
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   OAuthSwift: 1ef042d4362e755e24a78f158d817245641a5d24
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

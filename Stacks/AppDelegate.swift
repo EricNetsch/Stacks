@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Parse
 
 
 @UIApplicationMain
@@ -18,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "BzX9XBZDfhbhUY2sNI7hrwP7qM5uqwuyY1Zkx3gh"
+            $0.server = "http://stacks-app.com/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
+        
         return true
     }
 
