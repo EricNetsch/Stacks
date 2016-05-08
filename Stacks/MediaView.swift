@@ -40,12 +40,17 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     @IBOutlet weak var trashIcon: UIButton!
     
     @IBOutlet weak var btnStackView: UIStackView!
+    @IBOutlet weak var counterStackView: UIStackView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         animateFolderBtnsDwn()
         carousel.type = .Linear
+        
+        navigationController!.navigationBar.titleTextAttributes =
+            ([NSFontAttributeName: UIFont(name: "Avenir-Book", size: 20)!,
+                NSForegroundColorAttributeName: UIColor.whiteColor()])
         
 //        tap.delegate = self
 //        gesture.delegate = self
@@ -215,6 +220,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                animateViewToOrigin()
                 animateTrashUp()
                 self.isViewLevel += 1
+                counterStackView.hidden = false
                 print(isViewLevel)
             } else {
                 print("Do Nothing")
@@ -237,6 +243,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                 print(isViewLevel)
                 animateViewDelete()
                 animateTrashDown()
+                counterStackView.hidden = true
             } else {
                 print("Do Nothing")
                 print(isViewLevel)

@@ -45,7 +45,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="g2A-b3-Vn6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                 <color key="textColor" red="0.38039215686274508" green="0.396078431372549" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -68,7 +68,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="FdE-z7-FYd"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                 <color key="textColor" red="0.38039215686274508" green="0.396078431372549" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -132,7 +132,7 @@
                                 <state key="normal" image="trash"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.86274509803921573" green="0.85882352941176465" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="vW5-7Q-qBk" secondAttribute="trailing" constant="31" id="2U5-o4-80g"/>
                             <constraint firstItem="vW5-7Q-qBk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="32" id="A4h-ul-dnE"/>
@@ -167,13 +167,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="XLT-0x-NUO"/>
+                    <navigationItem key="navigationItem" title="STACKS" id="XLT-0x-NUO"/>
                     <connections>
                         <outlet property="btnStackView" destination="vW5-7Q-qBk" id="Bm6-GN-s6m"/>
                         <outlet property="buttonOne" destination="z7s-eM-2Wb" id="eC5-sV-L9v"/>
                         <outlet property="buttonThree" destination="kbg-rA-JpN" id="Rc0-yQ-9dT"/>
                         <outlet property="buttonTwo" destination="HzG-jL-YOx" id="41t-AT-GNI"/>
                         <outlet property="carousel" destination="c3v-m5-MJZ" id="JMR-NK-xHY"/>
+                        <outlet property="counterStackView" destination="8i3-TY-x74" id="AT6-u9-wde"/>
                         <outlet property="currentIndex" destination="IGi-Rl-of9" id="zNK-tc-1oZ"/>
                         <outlet property="labelOne" destination="11f-Cp-han" id="snn-KU-75n"/>
                         <outlet property="labelThree" destination="jHT-HY-QAT" id="bwN-4c-wgo"/>
@@ -184,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530.5" y="453.5"/>
+            <point key="canvasLocation" x="1117.5" y="453.5"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="mmu-OO-nEr">
@@ -235,12 +236,31 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="loginInstagramButton" destination="hgs-gQ-Wz3" id="uMr-NQ-d8f"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="SegueToPhotos" id="Rgx-wX-fIb"/>
+                        <segue destination="E2n-U0-KGm" kind="show" identifier="SegueToPhotos" id="Rgx-wX-fIb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8Z-2f-2Hi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-208" y="454"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jIR-7k-oZT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E2n-U0-KGm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jlS-cc-Zh1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.83137254901960778" green="0.82745098039215681" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rzh-y2-ZHf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HpV-rg-qQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530.5" y="453.5"/>
         </scene>
     </scenes>
     <resources>
