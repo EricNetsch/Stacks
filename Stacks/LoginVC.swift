@@ -17,21 +17,19 @@ let kSafariViewControllerCloseNotification = "kSafariViewControllerCloseNotifica
 class LoginVC: UIViewController, SFSafariViewControllerDelegate {
     
     @IBOutlet weak var loginInstagramButton: UIButton!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var logText: UILabel!
+   
     
     var safariVC: SFSafariViewController?
     var user: User?
     var accessToken: String!
+    let tokenSave = NSUserDefaults.standardUserDefaults()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginInstagramButton.setTitle(NSLocalizedString("Log in with Instagram!", comment: ""), forState: UIControlState.Normal)
-        
-        logText.hidden = true
-        label.hidden = true
+        loginInstagramButton.layer.cornerRadius = 10
+       
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.safariLogin(_:)), name: kSafariViewControllerCloseNotification, object: nil)
 
@@ -90,22 +88,22 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
                     self.safariVC?.dismissViewControllerAnimated(true, completion: { () -> Void in
                         
                         if let user = self.user {
-                            self.label.text = String.localizedStringWithFormat(NSLocalizedString("Welcome %@, you are logged in with the Instagram user: %@", comment: ""), user.firstName, user.userName)
-                            self.logText.text = String(json)
-                            
-                            self.label.hidden = false
-                            self.logText.hidden = false
-                            
+//                            self.label.text = String.localizedStringWithFormat(NSLocalizedString("Welcome %@, you are logged in with the Instagram user: %@", comment: ""), user.firstName, user.userName)
+//                            self.logText.text = String(json)
+//                            
+//                            self.label.hidden = false
+//                            self.logText.hidden = false
+                        
                             self.accessToken = user.instagramAccessToken
                             
-                            print("MY TOKEN:\(self.accessToken)")
                             
                              self.performSegueWithIdentifier("SegueToPhotos", sender: self)
-                            
-                        } else {
-                            self.label.text = NSLocalizedString("Sorry you are not logged in, try again.", comment: "")
-                            self.label.hidden = false
                         }
+                        
+//                        } else {
+//                            self.label.text = NSLocalizedString("Sorry you are not logged in, try again.", comment: "")
+//                            self.label.hidden = false
+//                        }
                         self.view.invalidateIntrinsicContentSize()
                        
                         
@@ -121,7 +119,7 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true) { () -> Void in
-            self.label.text = NSLocalizedString("You just dismissed the login view.", comment: "")
+//            self.label.text = NSLocalizedString("You just dismissed the login view.", comment: "")
         }
     }
     

@@ -146,12 +146,12 @@
 			children = (
 				F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */,
 				F7C798B11CD3C90600D4E040 /* MediaView.swift */,
-				F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */,
 				F7C798B31CD3C90600D4E040 /* Main.storyboard */,
 				F7C798B61CD3C90600D4E040 /* Assets.xcassets */,
 				F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */,
 				F7C798BB1CD3C90600D4E040 /* Info.plist */,
 				F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */,
+				F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */,
 				F7AF515C1CDAC8B400853DF9 /* OAuth */,
 			);
 			path = Stacks;
@@ -255,6 +255,7 @@
 				TargetAttributes = {
 					F7C798AB1CD3C90600D4E040 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = PFQ59PDNS3;
 					};
 					F7C798BF1CD3C90600D4E040 = {
 						CreatedOnToolsVersion = 7.3;
@@ -517,11 +518,14 @@
 			baseConfigurationReference = 493ACCF5CBF5896D5B457A57 /* Pods-Stacks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Stacks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilefirststudio.Stacks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stacks/Swift-iCarousel-header.h";
 			};
 			name = Debug;
@@ -531,11 +535,14 @@
 			baseConfigurationReference = D78C9F9A1EA6A50D9BC181D6 /* Pods-Stacks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Stacks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilefirststudio.Stacks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stacks/Swift-iCarousel-header.h";
 			};
 			name = Release;

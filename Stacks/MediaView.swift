@@ -12,9 +12,6 @@ import SwiftyJSON
 import SafariServices
 
 
-
-
-
 class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGestureRecognizerDelegate {
     
 
@@ -29,31 +26,45 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var imageData = NSData()
     var photos : NSMutableArray = NSMutableArray()
     
+    var isViewLevel: Int = 2
+    
     @IBOutlet var carousel : iCarousel!
     @IBOutlet weak var currentIndex: UILabel!
     @IBOutlet weak var totalIndex: UILabel!
-    @IBOutlet weak var backgroundImg: UIImageView!
-    @IBOutlet weak var loginInstagramButton: UIBarButtonItem!
+    @IBOutlet weak var buttonOne: UIButton!
+    @IBOutlet weak var buttonTwo: UIButton!
+    @IBOutlet weak var buttonThree: UIButton!
+    @IBOutlet weak var labelOne: UILabel!
+    @IBOutlet weak var labelTwo: UILabel!
+    @IBOutlet weak var labelThree: UILabel!
+    @IBOutlet weak var trashIcon: UIButton!
+    
+    @IBOutlet weak var btnStackView: UIStackView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        animateFolderBtnsDwn()
         carousel.type = .Linear
         
 //        tap.delegate = self
 //        gesture.delegate = self
         
+       
+        
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
         print(link)
         let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        
         let task = session.dataTaskWithRequest(NSURLRequest(URL: url!)) { (data, response, error) -> Void in
             
             if (error == nil){
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                     data!, options:[]) as? NSDictionary {
                     let photosArr: NSArray = (responseDictionary["data"] as? NSArray)!
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                     
                     for photo in photosArr {
                         
@@ -64,22 +75,28 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                         let theImageURL = NSURL(string: imageArry)
                         self.photos.addObject(NSData(contentsOfURL: theImageURL!)!)
                         print("COUNT:\(self.photos.count)")
-                         self.carousel.reloadData()
+                        
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.carousel.reloadData()
                     }
                 }
+            }
+                    
             } else{
                 
                 print("Error downloading data \(error)")
             }
         }
-        
+    }
         task.resume()
         
+         print("LEVEL COUNT IS:\(isViewLevel)")
     }
     
+   
     override func viewDidAppear(animated: Bool) {
+       
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -95,16 +112,30 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func carouselDidEndScrollingAnimation(carousel: iCarousel) {
         
-        self.gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
-       
-        carousel.currentItemView?.addGestureRecognizer(gesture)
-        carousel.currentItemView?.userInteractionEnabled = true
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
-        carousel.currentItemView?.addGestureRecognizer(tap)
-        carousel.currentItemView?.userInteractionEnabled = true
+        let upSelector: Selector = #selector(handleUpSwipe(_:))
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: upSelector)
         
-        self.gesture.requireGestureRecognizerToFail(tap)
+        upSwipe.direction = .Up
+        
+        view.addGestureRecognizer(upSwipe)
+        
+        let downSelector: Selector = #selector(handleDownSwipe(_:))
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: downSelector)
+        
+        downSwipe.direction = .Down
+        
+        view.addGestureRecognizer(downSwipe)
+        
+//        self.gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
+//       
+//        carousel.currentItemView?.addGestureRecognizer(gesture)
+//        carousel.currentItemView?.userInteractionEnabled = true
+//
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
+//        carousel.currentItemView?.addGestureRecognizer(tap)
+//        carousel.currentItemView?.userInteractionEnabled = true
+//        
+//        self.gesture.requireGestureRecognizerToFail(tap)
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
@@ -127,7 +158,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         }
 
         itemView.image = UIImage(data: photos.objectAtIndex(index) as! NSData)
-//        itemView.contentMode = .ScaleAspectFill
         itemView.contentMode = UIViewContentMode.ScaleAspectFill
         
         
@@ -149,33 +179,232 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
 
     func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
         
-        
-        let translation = gestureRecognizer.translationInView(self.view?.superview)
-        carousel.currentItemView!.frame.origin.y = translation.y
-        
-        print(translation.y)
-        
-        if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y <= -50.0 {
-            print("Ended")
-            carousel.currentItemView!.frame.origin = CGPointMake(0, -200.0)
-            
-            
-        }else if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y >= 175.0 {
-            carousel.currentItemView!.frame.origin = CGPointMake(0, 400)
-            
-            
-        } else if gestureRecognizer.state == UIGestureRecognizerState.Ended {
-            carousel.currentItemView!.frame.origin = CGPointMake(0, 0)
-            
-        }
+//        let translation = gestureRecognizer.translationInView(self.view?.superview)
+//        carousel.currentItemView!.frame.origin.y = translation.y
+//        
+//        print(translation.y)
+//        
+//        if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y <= -50.0 {
+//            print("Ended")
+//            carousel.currentItemView!.frame.origin = CGPointMake(0, -200.0)
+//            
+//            
+//        }else if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y >= 175.0 {
+//            carousel.currentItemView!.frame.origin = CGPointMake(0, 400)
+//            
+//            
+//        } else if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+//            carousel.currentItemView!.frame.origin = CGPointMake(0, 0)
+//            
+//        }
         
     }
     
-     func wasTapped(gestureRecognizer: UITapGestureRecognizer) {
+    
+    
+    func handleUpSwipe(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .Up) {
             
-        carousel.currentItemView!.frame.origin = CGPointMake(0, 0)
-        print("Tapped")
+            if self.isViewLevel == 2 {
+            self.isViewLevel += 1
+                print(isViewLevel)
+            animateViewUp()
+            animateFolderBtnsUp()
+                
+            } else if self.isViewLevel == 1 {
+               animateViewToOrigin()
+                animateTrashUp()
+                self.isViewLevel += 1
+                print(isViewLevel)
+            } else {
+                print("Do Nothing")
+                print(isViewLevel)
+            }
+        }
     }
+    
+    
+    func handleDownSwipe(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .Down) {
+        
+            if self.isViewLevel == 3 {
+            self.isViewLevel -= 1
+                print(isViewLevel)
+            animateViewToOrigin()
+            animateFolderBtnsDwn()
+            } else if self.isViewLevel == 2 {
+                self.isViewLevel -= 1
+                print(isViewLevel)
+                animateViewDelete()
+                animateTrashDown()
+            } else {
+                print("Do Nothing")
+                print(isViewLevel)
+            }
+        }
+    }
+    
+    func animateViewUp() {
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            // setup 2D transitions for animations
+            let animateUp = CGAffineTransformMakeTranslation(0, -300)
+            
+            
+            self.carousel.currentItemView!.transform = animateUp
+            self.carousel.alpha = 0.5
+            self.carousel.scrollEnabled = false
+            
+            
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+        })
+    }
+    
+    
+    func animateViewToOrigin() {
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            // setup 2D transitions for animations
+            let returnToOrigin = CGAffineTransformMakeTranslation(0, 0)
+            
+            self.carousel.currentItemView!.transform = returnToOrigin
+            self.carousel.alpha = 1.0
+            self.carousel.scrollEnabled = true
+           
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+        })
+        
+    }
+    
+    func animateViewDelete() {
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            // setup 2D transitions for animations
+            let animateDelete = CGAffineTransformMakeTranslation(0, 300)
+            
+            self.carousel.currentItemView!.transform = animateDelete
+            self.carousel.alpha = 0.5
+            self.carousel.scrollEnabled = false
+            
+            }, completion: { finished in
+                
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+        })
+        
+    }
+
+    
+    func animateFolderBtnsDwn() {
+        
+        buttonOne.alpha = 0
+        buttonTwo.alpha = 0
+        buttonThree.alpha = 0
+        
+        self.labelOne.alpha = 0
+        self.labelTwo.alpha = 0
+        self.labelThree.alpha = 0
+        
+        
+        
+         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        
+        let offstageDown = CGAffineTransformMakeTranslation(0, 400)
+            
+            self.buttonOne.transform = offstageDown
+            self.buttonTwo.transform = offstageDown
+            self.buttonThree.transform = offstageDown
+            self.labelOne.transform = offstageDown
+            self.labelTwo.transform = offstageDown
+            self.labelThree.transform = offstageDown
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+         })
+        
+    }
+    
+    func animateFolderBtnsUp() {
+        
+        buttonOne.alpha = 1
+        buttonTwo.alpha = 1
+        buttonThree.alpha = 1
+        
+        self.labelOne.alpha = 1
+        self.labelTwo.alpha = 1
+        self.labelThree.alpha = 1
+        
+        UIView.animateWithDuration(0.6, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            self.buttonOne.transform = CGAffineTransformIdentity
+            self.buttonTwo.transform = CGAffineTransformIdentity
+            self.buttonThree.transform = CGAffineTransformIdentity
+            
+            self.labelOne.transform = CGAffineTransformIdentity
+            self.labelTwo.transform = CGAffineTransformIdentity
+            self.labelThree.transform = CGAffineTransformIdentity
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+        })
+        
+    }
+    
+    func animateTrashUp() {
+        
+        UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            self.trashIcon.transform = CGAffineTransformIdentity
+
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+        })
+        
+    }
+    
+    func animateTrashDown() {
+        
+        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            let onstageDown = CGAffineTransformMakeTranslation(0, 550)
+            
+            self.trashIcon.transform = onstageDown
+           
+            
+            }, completion: { finished in
+                
+                // tell our transitionContext object that we've finished animating
+                //                transitionContext.completeTransition(true)
+                
+        })
+
+        
+    }
+    
     
     
    }
