@@ -34,7 +34,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7s-eM-2Wb">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="73"/>
-                                                <state key="normal" image="stack"/>
+                                                <state key="normal" image="stack_1"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inspired" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11f-Cp-han">
                                                 <rect key="frame" x="0.0" y="73" width="73" height="17"/>
@@ -53,7 +53,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzG-jL-YOx">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="73"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                                <state key="normal" image="stack"/>
+                                                <state key="normal" image="stack_2"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stuff" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZf-wu-tK2">
                                                 <rect key="frame" x="0.0" y="73" width="73" height="17"/>
@@ -71,7 +71,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-rA-JpN">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="73"/>
-                                                <state key="normal" image="stack"/>
+                                                <state key="normal" image="stack_3"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHT-HY-QAT">
                                                 <rect key="frame" x="0.0" y="73" width="73" height="17"/>
@@ -159,6 +159,7 @@
                         <outlet property="carousel" destination="c3v-m5-MJZ" id="JMR-NK-xHY"/>
                         <outlet property="counterStackView" destination="8i3-TY-x74" id="AT6-u9-wde"/>
                         <outlet property="currentIndex" destination="IGi-Rl-of9" id="zNK-tc-1oZ"/>
+                        <outlet property="gradiantView" destination="Jfr-bu-gzi" id="DDM-IK-36U"/>
                         <outlet property="labelOne" destination="11f-Cp-han" id="snn-KU-75n"/>
                         <outlet property="labelThree" destination="jHT-HY-QAT" id="bwN-4c-wgo"/>
                         <outlet property="labelTwo" destination="sZf-wu-tK2" id="0R7-qH-tVP"/>
@@ -168,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432.5" y="437.5"/>
+            <point key="canvasLocation" x="360.5" y="448.5"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="mmu-OO-nEr">
@@ -228,7 +229,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="stack" width="237" height="237"/>
+        <image name="stack_1" width="81" height="82"/>
+        <image name="stack_2" width="81" height="82"/>
+        <image name="stack_3" width="81" height="82"/>
         <image name="stacks_bg" width="375" height="667"/>
         <image name="trash" width="438" height="438"/>
     </resources>

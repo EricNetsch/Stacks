@@ -42,6 +42,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     @IBOutlet weak var btnStackView: UIStackView!
     @IBOutlet weak var counterStackView: UIStackView!
     
+    @IBOutlet weak var gradiantView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
