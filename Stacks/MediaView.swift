@@ -136,6 +136,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         {
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:300, height:300))
             itemView.contentMode = .ScaleAspectFill
+            itemView.clipsToBounds = true
             
         }
         else
@@ -216,7 +217,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             let animateUp = CGAffineTransformMakeTranslation(0, -300)
             
             self.carousel.currentItemView!.transform = animateUp
-            self.carousel.alpha = 0.5
+//            self.carousel.alpha = 0.5
             self.carousel.scrollEnabled = false
             
             }, completion: { finished in
@@ -319,7 +320,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateTrashUp() {
         
-        UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             self.trashIcon.transform = CGAffineTransformIdentity
 
@@ -331,9 +332,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateTrashDown() {
         
-        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
-            let onstageDown = CGAffineTransformMakeTranslation(0, 550)
+            let onstageDown = CGAffineTransformMakeTranslation(0, 450)
             
             self.trashIcon.transform = onstageDown
             
