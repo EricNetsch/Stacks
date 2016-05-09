@@ -48,15 +48,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         animateFolderBtnsDwn()
         carousel.type = .Linear
         
-        navigationController!.navigationBar.titleTextAttributes =
-            ([NSFontAttributeName: UIFont(name: "Avenir-Book", size: 20)!,
-                NSForegroundColorAttributeName: UIColor.whiteColor()])
-        
-//        tap.delegate = self
-//        gesture.delegate = self
-        
-       
-        
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
         print(link)
@@ -130,18 +121,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         downSwipe.direction = .Down
         
         view.addGestureRecognizer(downSwipe)
-        
-//        self.gesture = UIPanGestureRecognizer(target: self, action: #selector(MediaView.wasDragged(_:)))
-//       
-//        carousel.currentItemView?.addGestureRecognizer(gesture)
-//        carousel.currentItemView?.userInteractionEnabled = true
-//
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(MediaView.wasTapped(_:)))
-//        carousel.currentItemView?.addGestureRecognizer(tap)
-//        carousel.currentItemView?.userInteractionEnabled = true
-//        
-//        self.gesture.requireGestureRecognizerToFail(tap)
     }
+    
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
         return self.photos.count
@@ -182,30 +163,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         return value
     }
 
-    func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
-        
-//        let translation = gestureRecognizer.translationInView(self.view?.superview)
-//        carousel.currentItemView!.frame.origin.y = translation.y
-//        
-//        print(translation.y)
-//        
-//        if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y <= -50.0 {
-//            print("Ended")
-//            carousel.currentItemView!.frame.origin = CGPointMake(0, -200.0)
-//            
-//            
-//        }else if gestureRecognizer.state == UIGestureRecognizerState.Ended && translation.y >= 175.0 {
-//            carousel.currentItemView!.frame.origin = CGPointMake(0, 400)
-//            
-//            
-//        } else if gestureRecognizer.state == UIGestureRecognizerState.Ended {
-//            carousel.currentItemView!.frame.origin = CGPointMake(0, 0)
-//            
-//        }
-        
-    }
-    
-    
     
     func handleUpSwipe(sender: UISwipeGestureRecognizer) {
         if (sender.direction == .Up) {
@@ -258,17 +215,14 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             // setup 2D transitions for animations
             let animateUp = CGAffineTransformMakeTranslation(0, -300)
             
-            
             self.carousel.currentItemView!.transform = animateUp
             self.carousel.alpha = 0.5
             self.carousel.scrollEnabled = false
             
-            
-            
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
+                // tell our object that we've finished animating
+                
         })
     }
     
@@ -283,12 +237,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             self.carousel.currentItemView!.transform = returnToOrigin
             self.carousel.alpha = 1.0
             self.carousel.scrollEnabled = true
-           
             
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
                 
         })
         
@@ -308,9 +259,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             }, completion: { finished in
                 
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
-                
         })
         
     }
@@ -326,8 +274,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         self.labelTwo.alpha = 0
         self.labelThree.alpha = 0
         
-        
-        
          UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
         
         let offstageDown = CGAffineTransformMakeTranslation(0, 400)
@@ -341,11 +287,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
                 
          })
-        
     }
     
     func animateFolderBtnsUp() {
@@ -370,11 +313,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
                 
         })
-        
     }
     
     func animateTrashUp() {
@@ -383,14 +323,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             
             self.trashIcon.transform = CGAffineTransformIdentity
 
-            
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
                 
         })
-        
     }
     
     func animateTrashDown() {
@@ -400,19 +336,13 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             let onstageDown = CGAffineTransformMakeTranslation(0, 550)
             
             self.trashIcon.transform = onstageDown
-           
             
             }, completion: { finished in
                 
-                // tell our transitionContext object that we've finished animating
-                //                transitionContext.completeTransition(true)
                 
         })
-
-        
     }
     
     
-    
-   }
+}
 
