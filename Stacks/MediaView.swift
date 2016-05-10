@@ -42,12 +42,19 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     @IBOutlet weak var btnStackView: UIStackView!
     @IBOutlet weak var counterStackView: UIStackView!
     
-    @IBOutlet weak var gradiantView: UIView!
+    @IBOutlet weak var newStackBtn: UIButton!
+   
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         animateFolderBtnsDwn()
         carousel.type = .Linear
+        
+        //Transparent Navigation Bar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
@@ -149,7 +156,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         itemView.contentMode = UIViewContentMode.ScaleAspectFill
         
         
-        currentIndex.text = "\(carousel.currentItemIndex) of"
+        currentIndex.text = "\(carousel.currentItemIndex)/"
         totalIndex.text = "\(photos.count)"
         
         return itemView
@@ -174,12 +181,12 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                 print(isViewLevel)
             animateViewUp()
             animateFolderBtnsUp()
+            counterStackView.hidden = true
                 
             } else if self.isViewLevel == 1 {
                animateViewToOrigin()
                 animateTrashUp()
                 self.isViewLevel += 1
-                counterStackView.hidden = false
                 print(isViewLevel)
             } else {
                 print("Do Nothing")
@@ -197,12 +204,12 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                 print(isViewLevel)
             animateViewToOrigin()
             animateFolderBtnsDwn()
+            counterStackView.hidden = false
             } else if self.isViewLevel == 2 {
                 self.isViewLevel -= 1
                 print(isViewLevel)
                 animateViewDelete()
                 animateTrashDown()
-                counterStackView.hidden = true
             } else {
                 print("Do Nothing")
                 print(isViewLevel)
@@ -215,7 +222,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             // setup 2D transitions for animations
-            let animateUp = CGAffineTransformMakeTranslation(0, -300)
+            let animateUp = CGAffineTransformMakeTranslation(0, -310)
             
             self.carousel.currentItemView!.transform = animateUp
 //            self.carousel.alpha = 0.5
@@ -272,6 +279,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         buttonTwo.alpha = 0
         buttonThree.alpha = 0
         
+        newStackBtn.alpha = 0
+        
         self.labelOne.alpha = 0
         self.labelTwo.alpha = 0
         self.labelThree.alpha = 0
@@ -287,6 +296,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             self.labelTwo.transform = offstageDown
             self.labelThree.transform = offstageDown
             
+            self.newStackBtn.transform = offstageDown
+            
             }, completion: { finished in
                 
                 
@@ -298,6 +309,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         buttonOne.alpha = 1
         buttonTwo.alpha = 1
         buttonThree.alpha = 1
+        
+        newStackBtn.alpha = 1
         
         self.labelOne.alpha = 1
         self.labelTwo.alpha = 1
@@ -312,6 +325,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             self.labelOne.transform = CGAffineTransformIdentity
             self.labelTwo.transform = CGAffineTransformIdentity
             self.labelThree.transform = CGAffineTransformIdentity
+            
+            self.newStackBtn.transform = CGAffineTransformIdentity
             
             }, completion: { finished in
                 

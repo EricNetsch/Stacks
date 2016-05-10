@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4E31672541E3FB4CACC9F728 /* Pods_Stacks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEDF29E521366F97E57755F /* Pods_Stacks.framework */; };
+		F7A55FB01CE11FD90006103E /* StacksGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FAF1CE11FD90006103E /* StacksGallery.swift */; };
+		F7A55FB21CE1353D0006103E /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FB11CE1353D0006103E /* TransitionManager.swift */; };
+		F7A55FB41CE1484C0006103E /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FB31CE1484C0006103E /* CustomSegue.swift */; };
+		F7A55FB61CE1677E0006103E /* NewStackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FB51CE1677E0006103E /* NewStackVC.swift */; };
+		F7A55FB81CE16AAA0006103E /* CreatedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FB71CE16AAA0006103E /* CreatedStack.swift */; };
 		F7AF515B1CDAC04400853DF9 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */; };
 		F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */; };
 		F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798B11CD3C90600D4E040 /* MediaView.swift */; };
@@ -43,6 +48,11 @@
 		493ACCF5CBF5896D5B457A57 /* Pods-Stacks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stacks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stacks/Pods-Stacks.debug.xcconfig"; sourceTree = "<group>"; };
 		4BEDF29E521366F97E57755F /* Pods_Stacks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stacks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D78C9F9A1EA6A50D9BC181D6 /* Pods-Stacks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stacks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stacks/Pods-Stacks.release.xcconfig"; sourceTree = "<group>"; };
+		F7A55FAF1CE11FD90006103E /* StacksGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StacksGallery.swift; sourceTree = "<group>"; };
+		F7A55FB11CE1353D0006103E /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		F7A55FB31CE1484C0006103E /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		F7A55FB51CE1677E0006103E /* NewStackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStackVC.swift; sourceTree = "<group>"; };
+		F7A55FB71CE16AAA0006103E /* CreatedStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedStack.swift; sourceTree = "<group>"; };
 		F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		F7C798AC1CD3C90600D4E040 /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +154,10 @@
 		F7C798AE1CD3C90600D4E040 /* Stacks */ = {
 			isa = PBXGroup;
 			children = (
+				F7A55FB31CE1484C0006103E /* CustomSegue.swift */,
 				F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */,
+				F7A55FB11CE1353D0006103E /* TransitionManager.swift */,
+				F7A55FAF1CE11FD90006103E /* StacksGallery.swift */,
 				F7C798B11CD3C90600D4E040 /* MediaView.swift */,
 				F7C798B31CD3C90600D4E040 /* Main.storyboard */,
 				F7C798B61CD3C90600D4E040 /* Assets.xcassets */,
@@ -153,6 +166,8 @@
 				F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */,
 				F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */,
 				F7AF515C1CDAC8B400853DF9 /* OAuth */,
+				F7A55FB51CE1677E0006103E /* NewStackVC.swift */,
+				F7A55FB71CE16AAA0006103E /* CreatedStack.swift */,
 			);
 			path = Stacks;
 			sourceTree = "<group>";
@@ -370,10 +385,15 @@
 				F7AF515B1CDAC04400853DF9 /* PhotoModel.swift in Sources */,
 				F7C798EA1CD4104700D4E040 /* Instagram.swift in Sources */,
 				F7C798E01CD3CACE00D4E040 /* iCarousel.m in Sources */,
+				F7A55FB61CE1677E0006103E /* NewStackVC.swift in Sources */,
 				F7F7B94D1CD6DE560094B27D /* LoginVC.swift in Sources */,
 				F7C798F41CD42C0300D4E040 /* User.swift in Sources */,
 				F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */,
+				F7A55FB21CE1353D0006103E /* TransitionManager.swift in Sources */,
 				F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */,
+				F7A55FB41CE1484C0006103E /* CustomSegue.swift in Sources */,
+				F7A55FB01CE11FD90006103E /* StacksGallery.swift in Sources */,
+				F7A55FB81CE16AAA0006103E /* CreatedStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

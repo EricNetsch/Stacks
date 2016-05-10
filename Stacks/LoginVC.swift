@@ -146,10 +146,13 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "SegueToPhotos") {
-            
-            let destinationVC = (segue.destinationViewController as! MediaView)
         
-            destinationVC.accessToken = self.accessToken
+//            let destinationVC = (segue.destinationViewController as! StacksGallery)
+//            destinationVC.accessToken = self.accessToken
+            
+            let navVC = (segue.destinationViewController as! UINavigationController)
+            let collectionVC = navVC.viewControllers.first as! StacksGallery
+            collectionVC.accessToken = self.accessToken
         }
     }
     
