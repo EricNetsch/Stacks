@@ -149,7 +149,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         var itemView: UIImageView
         if (view == nil)
         {
-            itemView = UIImageView(frame:CGRect(x:0, y:0, width:300, height:300))
+            itemView = UIImageView(frame:CGRect(x:0, y:0, width:290, height:290))
             itemView.contentMode = .ScaleAspectFill
             itemView.clipsToBounds = true
             
@@ -163,7 +163,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         itemView.contentMode = UIViewContentMode.ScaleAspectFill
         
         
-        currentIndex.text = "\(carousel.currentItemIndex + 1)/"
         totalIndex.text = "\(photos.count)"
         
         return itemView
