@@ -10,16 +10,21 @@ import UIKit
 
 class StacksGallery: UIViewController {
     
+    var image = UIImage(named: "settings.png")
     var accessToken: String!
     let transitionManager = TransitionManager()
 
+    @IBOutlet weak var settingsBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //Transparent Navigation Bar
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.translucent = true
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: Selector("presentLeftMenuViewController"))
 
     }
 

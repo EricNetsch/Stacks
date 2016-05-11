@@ -50,6 +50,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         super.viewDidLoad()
         animateFolderBtnsDwn()
         carousel.type = .Linear
+        self.carousel.clipsToBounds = true
+    
         
         //Transparent Navigation Bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -156,7 +158,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         itemView.contentMode = UIViewContentMode.ScaleAspectFill
         
         
-        currentIndex.text = "\(carousel.currentItemIndex)/"
+        currentIndex.text = "\(carousel.currentItemIndex + 1)/"
         totalIndex.text = "\(photos.count)"
         
         return itemView
@@ -171,6 +173,14 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         }
         return value
     }
+    
+//    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
+//        self.isViewLevel = 2
+//    }
+    
+    func carouselDidScroll(carousel: iCarousel) {
+        self.isViewLevel = 2
+    }
 
     
     func handleUpSwipe(sender: UISwipeGestureRecognizer) {
@@ -178,7 +188,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             
             if self.isViewLevel == 2 {
             self.isViewLevel += 1
-                print(isViewLevel)
+                print("UP:\(isViewLevel)")
             animateViewUp()
             animateFolderBtnsUp()
             counterStackView.hidden = true
@@ -187,7 +197,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                animateViewToOrigin()
                 animateTrashUp()
                 self.isViewLevel += 1
-                print(isViewLevel)
+                 print("UP:\(isViewLevel)")
             } else {
                 print("Do Nothing")
                 print(isViewLevel)
@@ -201,13 +211,13 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         
             if self.isViewLevel == 3 {
             self.isViewLevel -= 1
-                print(isViewLevel)
+                 print("DOWN:\(isViewLevel)")
             animateViewToOrigin()
             animateFolderBtnsDwn()
             counterStackView.hidden = false
             } else if self.isViewLevel == 2 {
                 self.isViewLevel -= 1
-                print(isViewLevel)
+                print("DOWN:\(isViewLevel)")
                 animateViewDelete()
                 animateTrashDown()
             } else {
@@ -275,15 +285,15 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateFolderBtnsDwn() {
         
-        buttonOne.alpha = 0
-        buttonTwo.alpha = 0
-        buttonThree.alpha = 0
-        
-        newStackBtn.alpha = 0
-        
-        self.labelOne.alpha = 0
-        self.labelTwo.alpha = 0
-        self.labelThree.alpha = 0
+//        buttonOne.alpha = 0
+//        buttonTwo.alpha = 0
+//        buttonThree.alpha = 0
+//        
+//        newStackBtn.alpha = 0
+//        
+//        self.labelOne.alpha = 0
+//        self.labelTwo.alpha = 0
+//        self.labelThree.alpha = 0
         
          UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
         
@@ -316,7 +326,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         self.labelTwo.alpha = 1
         self.labelThree.alpha = 1
         
-        UIView.animateWithDuration(0.6, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             self.buttonOne.transform = CGAffineTransformIdentity
             self.buttonTwo.transform = CGAffineTransformIdentity
@@ -336,7 +346,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateTrashUp() {
         
-        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             self.trashIcon.transform = CGAffineTransformIdentity
 
@@ -360,6 +370,67 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         })
     }
     
+    func animateMoveToStack() {
+        
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            // setup 2D transitions for animations
+            let animateUp = CGAffineTransformMakeTranslation(0, -500)
+            
+            self.carousel.currentItemView!.transform = animateUp
+            
+            }, completion: { finished in
+                
+                let nextIndex = self.carousel.currentItemIndex
+                
+                self.carousel.removeItemAtIndex(self.carousel.currentItemIndex, animated: false)
+                self.photos.removeObjectAtIndex(self.carousel.currentItemIndex)
+                self.carousel.reloadData()
+                self.carousel.scrollToItemAtIndex(nextIndex, duration: 0.8)
+                
+        })
+    }
     
+    func animateDeleteImage() {
+        
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: {
+            
+            // setup 2D transitions for animations
+            let animateDown = CGAffineTransformMakeTranslation(0, 500)
+            
+            self.carousel.currentItemView!.transform = animateDown
+            
+            }, completion: { finished in
+                
+                let nextIndex = self.carousel.currentItemIndex
+                
+                self.carousel.removeItemAtIndex(self.carousel.currentItemIndex, animated: false)
+                self.photos.removeObjectAtIndex(self.carousel.currentItemIndex)
+                self.carousel.reloadData()
+                self.carousel.scrollToItemAtIndex(nextIndex, duration: 0.8)
+                
+        })
+        
+    }
+    
+    
+    @IBAction func stackOnePressed(sender: UIButton) {
+        
+        animateMoveToStack()
+        animateFolderBtnsDwn()
+        self.carousel.scrollEnabled = true
+        counterStackView.hidden = false
+        self.isViewLevel = 2
+        
+    }
+    
+    @IBAction func deletePressed(sender: UIButton) {
+        animateDeleteImage()
+        animateTrashUp()
+        self.carousel.scrollEnabled = true
+        self.carousel.alpha = 1.0
+        self.isViewLevel = 2
+
+    }
 }
 
