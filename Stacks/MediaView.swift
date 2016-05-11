@@ -112,9 +112,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         
     }
 
-    func gestureRecognizer(_: UIGestureRecognizer,shouldRecognizeSimultaneouslyWithGestureRecognizer:UIGestureRecognizer) -> Bool {
-        return true
-    }
     
     func carouselDidEndScrollingAnimation(carousel: iCarousel) {
         
@@ -174,14 +171,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         return value
     }
     
-//    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
-//        self.isViewLevel = 2
-//    }
-    
-    func carouselDidScroll(carousel: iCarousel) {
-        self.isViewLevel = 2
+    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
+        currentIndex.text = "\(carousel.currentItemIndex + 1)/"
     }
-
+    
     
     func handleUpSwipe(sender: UISwipeGestureRecognizer) {
         if (sender.direction == .Up) {
@@ -346,7 +339,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateTrashUp() {
         
-        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             self.trashIcon.transform = CGAffineTransformIdentity
 

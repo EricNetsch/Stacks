@@ -16,7 +16,6 @@
 		F7A55FBB1CE269210006103E /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBA1CE269210006103E /* SSASideMenu.swift */; };
 		F7A55FBD1CE269FB0006103E /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */; };
 		F7A55FBF1CE2B0E50006103E /* CreatedStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */; };
-		F7AF515B1CDAC04400853DF9 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */; };
 		F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */; };
 		F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798B11CD3C90600D4E040 /* MediaView.swift */; };
 		F7C798B51CD3C90600D4E040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C798B31CD3C90600D4E040 /* Main.storyboard */; };
@@ -59,7 +58,6 @@
 		F7A55FBA1CE269210006103E /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedStackCell.swift; sourceTree = "<group>"; };
-		F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		F7C798AC1CD3C90600D4E040 /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7C798B11CD3C90600D4E040 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
@@ -132,6 +130,16 @@
 			path = SSASideMenu;
 			sourceTree = "<group>";
 		};
+		F7A55FC11CE2F3050006103E /* Manage Stacks */ = {
+			isa = PBXGroup;
+			children = (
+				F7A55FB51CE1677E0006103E /* NewStackVC.swift */,
+				F7A55FB71CE16AAA0006103E /* CreatedStack.swift */,
+				F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */,
+			);
+			name = "Manage Stacks";
+			sourceTree = "<group>";
+		};
 		F7AF515C1CDAC8B400853DF9 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +153,7 @@
 		F7C798A31CD3C90600D4E040 = {
 			isa = PBXGroup;
 			children = (
-				F7C798DD1CD3CACE00D4E040 /* iCarousel */,
+				F7C798AE1CD3C90600D4E040 /* Stacks */,
 				F7C798C31CD3C90600D4E040 /* StacksTests */,
 				F7C798CE1CD3C90600D4E040 /* StacksUITests */,
 				F7C798AD1CD3C90600D4E040 /* Products */,
@@ -167,7 +175,11 @@
 		F7C798AE1CD3C90600D4E040 /* Stacks */ = {
 			isa = PBXGroup;
 			children = (
+				F7C798DD1CD3CACE00D4E040 /* iCarousel */,
 				F7A55FB91CE269210006103E /* SSASideMenu */,
+				F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */,
+				F7A55FC11CE2F3050006103E /* Manage Stacks */,
+				F7AF515C1CDAC8B400853DF9 /* OAuth */,
 				F7A55FB31CE1484C0006103E /* CustomSegue.swift */,
 				F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */,
 				F7A55FB11CE1353D0006103E /* TransitionManager.swift */,
@@ -178,15 +190,8 @@
 				F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */,
 				F7C798BB1CD3C90600D4E040 /* Info.plist */,
 				F7C798E61CD3CD9D00D4E040 /* Swift-iCarousel-header.h */,
-				F7AF515A1CDAC04400853DF9 /* PhotoModel.swift */,
-				F7AF515C1CDAC8B400853DF9 /* OAuth */,
-				F7A55FB51CE1677E0006103E /* NewStackVC.swift */,
-				F7A55FB71CE16AAA0006103E /* CreatedStack.swift */,
-				F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */,
-				F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */,
 			);
-			name = Stacks;
-			path = ../Stacks;
+			path = Stacks;
 			sourceTree = "<group>";
 		};
 		F7C798C31CD3C90600D4E040 /* StacksTests */ = {
@@ -210,11 +215,11 @@
 		F7C798DD1CD3CACE00D4E040 /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
-				F7C798AE1CD3C90600D4E040 /* Stacks */,
 				F7C798DE1CD3CACE00D4E040 /* iCarousel.h */,
 				F7C798DF1CD3CACE00D4E040 /* iCarousel.m */,
 			);
-			path = iCarousel;
+			name = iCarousel;
+			path = ../iCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7AF515B1CDAC04400853DF9 /* PhotoModel.swift in Sources */,
 				F7C798EA1CD4104700D4E040 /* Instagram.swift in Sources */,
 				F7C798E01CD3CACE00D4E040 /* iCarousel.m in Sources */,
 				F7A55FB61CE1677E0006103E /* NewStackVC.swift in Sources */,
