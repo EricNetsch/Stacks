@@ -22,7 +22,8 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var accessToken: String!
     var nextURLRequest: NSURLRequest?
     let BASE: String = "https://api.instagram.com/v1/users/self/media/liked?access_token="
-
+    var photoId: [String]!
+    
     var imageData = NSData()
     var photos : NSMutableArray = NSMutableArray()
     
@@ -57,6 +58,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
@@ -75,6 +77,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                     for photo in photosArr {
                         
                         let dataArry = photo as? NSDictionary
+                        let getIds = dataArry!["id"] as! String
+//                        self.photoId.append(getIds)
+                        print("PHOTOID: \(getIds)")
+
                         let images = dataArry!["images"]!["standard_resolution"]
                         let imageArry = images!!["url"] as! String
                         print("LINK:\(imageArry)")
@@ -82,10 +88,12 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                         self.photos.addObject(NSData(contentsOfURL: theImageURL!)!)
                         print("COUNT:\(self.photos.count)")
                         
+                        
                     dispatch_async(dispatch_get_main_queue()) {
                         self.carousel.reloadData()
                     }
                 }
+                     
             }
                     
             } else{
