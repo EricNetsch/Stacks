@@ -69,7 +69,7 @@ extension LeftMenuViewController: UITableViewDelegate, UITableViewDataSource {
         let images: [String] = ["IconHome", "IconProfile", "IconSettings", "IconEmpty"]
         
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 15)
+        cell.textLabel?.font = UIFont(name: "Avenir", size: 18)
         cell.textLabel?.textColor = UIColor.lightGrayColor()
         cell.textLabel?.text  = titles[indexPath.row]
         cell.selectionStyle = .None

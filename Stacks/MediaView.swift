@@ -20,9 +20,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var safariVC: SFSafariViewController?
     var user: User?
     var accessToken: String!
-    var nextURLRequest: NSURLRequest?
+    var nextURLRequest: String!
     let BASE: String = "https://api.instagram.com/v1/users/self/media/liked?access_token="
-    var photoId: [String]!
+    var photoId = [String]()
     
     var imageData = NSData()
     var photos : NSMutableArray = NSMutableArray()
@@ -79,6 +79,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                         let dataArry = photo as? NSDictionary
                         let getIds = dataArry!["id"] as! String
 //                        self.photoId.append(getIds)
+                        self.photoId.append(String(getIds))
                         print("PHOTOID: \(getIds)")
 
                         let images = dataArry!["images"]!["standard_resolution"]
@@ -93,11 +94,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                         self.carousel.reloadData()
                     }
                 }
-                     
             }
                     
             } else{
-                
                 print("Error downloading data \(error)")
             }
         }
@@ -107,10 +106,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
          print("LEVEL COUNT IS:\(isViewLevel)")
     }
     
-   
-    override func viewDidAppear(animated: Bool) {
-       
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -152,7 +147,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:290, height:290))
             itemView.contentMode = .ScaleAspectFill
             itemView.clipsToBounds = true
-            
         }
         else
         {
@@ -285,19 +279,9 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     func animateFolderBtnsDwn() {
         
-//        buttonOne.alpha = 0
-//        buttonTwo.alpha = 0
-//        buttonThree.alpha = 0
-//        
-//        newStackBtn.alpha = 0
-//        
-//        self.labelOne.alpha = 0
-//        self.labelTwo.alpha = 0
-//        self.labelThree.alpha = 0
-        
          UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
         
-        let offstageDown = CGAffineTransformMakeTranslation(0, 400)
+        let offstageDown = CGAffineTransformMakeTranslation(0, 500)
             
             self.buttonOne.transform = offstageDown
             self.buttonTwo.transform = offstageDown
@@ -309,7 +293,6 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             self.newStackBtn.transform = offstageDown
             
             }, completion: { finished in
-                
                 
          })
     }
@@ -410,8 +393,68 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                 self.carousel.scrollToItemAtIndex(nextIndex, duration: 0.8)
                 
         })
-        
     }
+    
+    func getNextPhotoURL() {
+        
+        let url = NSURL(string:"\(BASE)\(self.accessToken)")
+        print(link)
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        
+        let task = session.dataTaskWithRequest(NSURLRequest(URL: url!)) { (data, response, error) -> Void in
+            
+            if (error == nil){
+                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                    data!, options:[]) as? NSDictionary {
+                    self.nextURLRequest = (responseDictionary["pagination"]!["next_url"] as? String)!
+                    print("NextURL:\(self.nextURLRequest)")
+                    
+                    let url = NSURL(string:"\(self.nextURLRequest)")
+                    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+                    
+                    let task = session.dataTaskWithRequest(NSURLRequest(URL: url!)) { (data, response, error) -> Void in
+                        
+                        if (error == nil){
+                            if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                                data!, options:[]) as? NSDictionary {
+                                let photosArr: NSArray = (responseDictionary["data"] as? NSArray)!
+                                
+                                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                                    
+                                    for photo in photosArr {
+                                        
+                                        let dataArry = photo as? NSDictionary
+                                        let getIds = dataArry!["id"] as! String
+                                        //                        self.photoId.append(getIds)
+                                        self.photoId.append(String(getIds))
+                                        print("PHOTOID: \(getIds)")
+                                        
+                                        let images = dataArry!["images"]!["standard_resolution"]
+                                        let imageArry = images!!["url"] as! String
+                                        print("LINK:\(imageArry)")
+                                        let theImageURL = NSURL(string: imageArry)
+                                        self.photos.addObject(NSData(contentsOfURL: theImageURL!)!)
+                                        print("COUNT:\(self.photos.count)")
+                                        
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            self.carousel.reloadData()
+                                        }
+                                    }
+                                }
+                                
+                            } else{
+                                print("Error downloading data \(error)")
+                            }
+                        }
+                    }
+                    task.resume()
+                    
+                }
+            }
+        }
+        task.resume()
+    }
+
     
     
     @IBAction func stackOnePressed(sender: UIButton) {
@@ -430,7 +473,11 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         self.carousel.scrollEnabled = true
         self.carousel.alpha = 1.0
         self.isViewLevel = 2
-
     }
+    
+    @IBAction func refreshBtn(sender: UIButton) {
+        getNextPhotoURL()
+    }
+    
 }
 
