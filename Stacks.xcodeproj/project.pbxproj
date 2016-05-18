@@ -16,6 +16,7 @@
 		F7A55FBB1CE269210006103E /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBA1CE269210006103E /* SSASideMenu.swift */; };
 		F7A55FBD1CE269FB0006103E /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */; };
 		F7A55FBF1CE2B0E50006103E /* CreatedStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */; };
+		F7ADF2E51CEBE17D0031F709 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ADF2E41CEBE17D0031F709 /* StatsVC.swift */; };
 		F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */; };
 		F7C798B21CD3C90600D4E040 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C798B11CD3C90600D4E040 /* MediaView.swift */; };
 		F7C798B51CD3C90600D4E040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C798B31CD3C90600D4E040 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		F7A55FBA1CE269210006103E /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		F7A55FBC1CE269FB0006103E /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		F7A55FBE1CE2B0E50006103E /* CreatedStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedStackCell.swift; sourceTree = "<group>"; };
+		F7ADF2E41CEBE17D0031F709 /* StatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		F7C798AC1CD3C90600D4E040 /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C798AF1CD3C90600D4E040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7C798B11CD3C90600D4E040 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				F7A55FAF1CE11FD90006103E /* StacksGallery.swift */,
 				F7C798B11CD3C90600D4E040 /* MediaView.swift */,
 				F7C798B31CD3C90600D4E040 /* Main.storyboard */,
+				F7ADF2E41CEBE17D0031F709 /* StatsVC.swift */,
 				F7C798B61CD3C90600D4E040 /* Assets.xcassets */,
 				F7C798B81CD3C90600D4E040 /* LaunchScreen.storyboard */,
 				F7C798BB1CD3C90600D4E040 /* Info.plist */,
@@ -416,6 +419,7 @@
 				F7C798B01CD3C90600D4E040 /* AppDelegate.swift in Sources */,
 				F7A55FB41CE1484C0006103E /* CustomSegue.swift in Sources */,
 				F7A55FBB1CE269210006103E /* SSASideMenu.swift in Sources */,
+				F7ADF2E51CEBE17D0031F709 /* StatsVC.swift in Sources */,
 				F7A55FB01CE11FD90006103E /* StacksGallery.swift in Sources */,
 				F7A55FBD1CE269FB0006103E /* LeftMenuViewController.swift in Sources */,
 				F7A55FB81CE16AAA0006103E /* CreatedStack.swift in Sources */,

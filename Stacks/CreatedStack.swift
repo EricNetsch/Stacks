@@ -15,12 +15,16 @@ class CreatedStack: UIViewController, UICollectionViewDelegate, UICollectionView
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var printBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        printBtn.layer.cornerRadius = 10
+        printBtn.layer.borderWidth = 2
+        printBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,8 +43,9 @@ class CreatedStack: UIViewController, UICollectionViewDelegate, UICollectionView
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CreatedStackCell
         
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.stackImages.image = UIImage(named: items[indexPath.row])
+        cell.stackImages.layer.cornerRadius = 5
+        cell.stackImages.clipsToBounds = true
         
         
         return cell

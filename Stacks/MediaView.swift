@@ -22,6 +22,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     var accessToken: String!
     var nextURLRequest: String!
     let BASE: String = "https://api.instagram.com/v1/users/self/media/liked?access_token="
+    let HASHTAG: String = "https://api.instagram.com/v1/tags/cats/media/recent?access_token="
     var photoId = [String]()
     
     var imageData = NSData()
@@ -39,6 +40,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     @IBOutlet weak var labelTwo: UILabel!
     @IBOutlet weak var labelThree: UILabel!
     @IBOutlet weak var trashIcon: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     
     @IBOutlet weak var btnStackView: UIStackView!
     @IBOutlet weak var counterStackView: UIStackView!
@@ -62,7 +64,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         
         
         let url = NSURL(string:"\(BASE)\(self.accessToken)")
-        print(link)
+        print(url)
         let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
         
         let task = session.dataTaskWithRequest(NSURLRequest(URL: url!)) { (data, response, error) -> Void in
@@ -147,6 +149,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:290, height:290))
             itemView.contentMode = .ScaleAspectFill
             itemView.clipsToBounds = true
+            itemView.layer.cornerRadius = 5
         }
         else
         {
@@ -297,6 +300,10 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
          })
     }
     
+    
+    
+    
+    
     func animateFolderBtnsUp() {
         
         buttonOne.alpha = 1
@@ -309,7 +316,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
         self.labelTwo.alpha = 1
         self.labelThree.alpha = 1
         
-        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.TransitionNone, animations: {
             
             self.buttonOne.transform = CGAffineTransformIdentity
             self.buttonTwo.transform = CGAffineTransformIdentity
@@ -477,7 +484,16 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     
     @IBAction func refreshBtn(sender: UIButton) {
         getNextPhotoURL()
-    }
-    
+        
+        UIView.animateWithDuration(0.5) { () -> Void in
+            
+            self.refreshButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        }
+        
+        UIView.animateWithDuration(0.5, delay: 0.25, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            
+            self.refreshButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2))
+            }, completion: nil)
+        }
 }
 

@@ -13,12 +13,28 @@ class StacksGallery: UIViewController {
     var accessToken: String!
     let transitionManager = TransitionManager()
     
-
-
-   
+    @IBOutlet weak var stackOne: UIButton!
+    @IBOutlet weak var stackOneBG: UIView!
+    
+    @IBOutlet weak var stackTwo: UIButton!
+    @IBOutlet weak var stackTwoBG: UIView!
+    
+    @IBOutlet weak var stackThree: UIButton!
+    @IBOutlet weak var stackThreeBG: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stackOne.layer.cornerRadius = 5
+        stackOne.clipsToBounds = true
+        stackOneBG.layer.cornerRadius = 5
+        stackTwo.layer.cornerRadius = 5
+        stackTwo.clipsToBounds = true
+        stackTwoBG.layer.cornerRadius = 5
+        stackThree.layer.cornerRadius = 5
+        stackThree.clipsToBounds = true
+        stackThreeBG.layer.cornerRadius = 5
         
         
          //Transparent Navigation Bar
@@ -34,35 +50,6 @@ class StacksGallery: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func animateSettingsViewDown() {
-//        
-//        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: {
-//            
-//            let offstageDown = CGAffineTransformMakeTranslation(0, 400)
-//            
-//            self.settingsView.transform = offstageDown
-//            
-//            }, completion: { finished in
-//                
-////                self.isSettingsUp = false
-//                
-//        })
-//    }
-//    
-//    func animateSettingsViewUp() {
-//        
-//        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.TransitionNone, animations: {
-//            
-//            self.settingsView.transform = CGAffineTransformIdentity
-//    
-//            
-//            }, completion: { finished in
-//                
-////                self.isSettingsUp = true
-//        })
-//    }
-//
 
     
 
