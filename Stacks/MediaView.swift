@@ -24,6 +24,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
     let BASE: String = "https://api.instagram.com/v1/users/self/media/liked?access_token="
     let HASHTAG: String = "https://api.instagram.com/v1/tags/cats/media/recent?access_token="
     var photoId = [String]()
+    let transitionManager = TransitionManager()
     
     var imageData = NSData()
     var photos : NSMutableArray = NSMutableArray()
@@ -299,10 +300,7 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
                 
          })
     }
-    
-    
-    
-    
+     
     
     func animateFolderBtnsUp() {
         
@@ -495,5 +493,33 @@ class MediaView: UIViewController, iCarouselDataSource, iCarouselDelegate, UIGes
             self.refreshButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2))
             }, completion: nil)
         }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "customSegue") {
+            
+            // this gets a reference to the screen that we're about to transition to
+//            let toViewController = segue.destinationViewController as UIViewController
+            
+            // instead of using the default transition animation, we'll ask
+            // the segue to use our custom TransitionManager object to manage the transition animation
+//            toViewController.transitioningDelegate = self.transitionManager
+            
+            let destinationVC = (segue.destinationViewController as! StacksGallery)
+            destinationVC.accessToken = self.accessToken
+            
+        }
+    }
+    
+    @IBAction func galleryToLikes(sender: AnyObject) {
+        
+        performSegueWithIdentifier("customSegue", sender: self)
+    }
+
+    
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        
+    }
+
+    
 }
 

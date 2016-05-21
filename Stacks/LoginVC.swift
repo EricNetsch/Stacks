@@ -151,7 +151,7 @@ class LoginVC: UIViewController, SFSafariViewControllerDelegate {
 //            destinationVC.accessToken = self.accessToken
             
             let navVC = (segue.destinationViewController as! UINavigationController)
-            let collectionVC = navVC.viewControllers.first as! StacksGallery
+            let collectionVC = navVC.viewControllers.first as! MediaView
             collectionVC.accessToken = self.accessToken
         }
     }

@@ -11,9 +11,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-
+//let INSTAGRAM_CLIENT_ID = "24e7ef78bde7477a8ca0c42857e6466f"
 let INSTAGRAM_CLIENT_ID = "8ec1327a13214b6d944deba720ca1f13"
 let INSTAGRAM_CLIENT_SECRET = "8835d20dd3eb4a76817827d915969a29"
+//let INSTAGRAM_CLIENT_SECRET = "fa694f01f9334fc288565a2d0501d535"
 let INSTAGRAM_REDIRECT_URL = "Stacks://authorize"
 var URL = ""
 let BASE = "https://api.instagram.com"

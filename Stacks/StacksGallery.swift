@@ -11,7 +11,6 @@ import UIKit
 class StacksGallery: UIViewController {
     
     var accessToken: String!
-    let transitionManager = TransitionManager()
     
     @IBOutlet weak var stackOne: UIButton!
     @IBOutlet weak var stackOneBG: UIView!
@@ -51,31 +50,5 @@ class StacksGallery: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "customSegue") {
-        
-            // this gets a reference to the screen that we're about to transition to
-            let toViewController = segue.destinationViewController as UIViewController
-            
-            // instead of using the default transition animation, we'll ask
-            // the segue to use our custom TransitionManager object to manage the transition animation
-            toViewController.transitioningDelegate = self.transitionManager
-            
-                        let destinationVC = (segue.destinationViewController as! MediaView)
-                        destinationVC.accessToken = self.accessToken
-        
-        }
-    }
-    
-    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
-        
-    }
-
-    @IBAction func galleryToLikes(sender: AnyObject) {
-        
-        performSegueWithIdentifier("customSegue", sender: self)
-    }
 
 }

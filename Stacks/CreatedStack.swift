@@ -11,7 +11,7 @@ import UIKit
 class CreatedStack: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-    var items = ["p2.png", "p4.png", "p6.png", "p8.png", "p3.png", "r1.png", "r2.png", "r4.png", "p10.png"]
+    var items = ["family2.png", "family4.png", "family6.png", "family1.png", "family3.png", "family5.png", "r2.png", "family7.png"]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -64,5 +64,31 @@ class CreatedStack: UIViewController, UICollectionViewDelegate, UICollectionView
         dismissViewControllerAnimated(true, completion: nil)
     }
   
+    @IBAction func printPressed(sender: UIButton) {
+        
+        let optionMenu = UIAlertController(title: nil, message: "Choose Print Option", preferredStyle: .ActionSheet)
+        
+        let blockAction = UIAlertAction(title: "Snapfish", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+            
+            
+        })
+        
+        let flagAction = UIAlertAction(title: "Shutterfly", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+            //TODO: Flag User Function
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (alert: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        optionMenu.addAction(blockAction)
+        optionMenu.addAction(flagAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+
 
 }
