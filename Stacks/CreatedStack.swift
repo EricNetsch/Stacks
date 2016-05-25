@@ -11,7 +11,7 @@ import UIKit
 class CreatedStack: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-    var items = ["family2.png", "family4.png", "family6.png", "family1.png", "family3.png", "family5.png", "r2.png", "family7.png"]
+    var items = ["family6.png", "family4.png", "family2.png", "family1.png", "family3.png", "family5.png", "r2.png", "family7.png"]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
